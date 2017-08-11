@@ -13,7 +13,9 @@ $(executables): %: %.o
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean_executables := $(executables:%=clean_%)
-clean_objects := $(patsubst %,clean_%,$(wildcard $(makefile_dir)/*.o))
+
+objects := $(patsubst %.c,%.o,$(wildcard $(makefile_dir)/*.c))
+clean_objects := $(objects:%=clean_%)
 
 .PHONY: clean
 clean: $(clean_executables) $(clean_objects)
