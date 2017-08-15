@@ -1,9 +1,12 @@
+#include <assert.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
 #define BINARY_STRING_MAX_LENGTH 8
 
 char *integer_to_binary_string(char *binary_string, int d);
+bool is_nonnegative(int d);
 
 int main(void) {
   for (int i = 0; i < 256; i += 1) {
@@ -13,6 +16,8 @@ int main(void) {
 }
 
 char *integer_to_binary_string(char *binary_string, int d) {
+  assert(is_nonnegative(d));
+
   if (d == 0) {
     strcpy(binary_string, "0");
   } else {
@@ -28,4 +33,8 @@ char *integer_to_binary_string(char *binary_string, int d) {
   }
 
   return binary_string;
+}
+
+bool is_nonnegative(int d) {
+  return d >= 0;
 }
