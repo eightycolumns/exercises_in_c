@@ -23,12 +23,14 @@ char *integer_to_binary_string(char *binary_string, int d) {
   } else {
     strcpy(binary_string, "");
 
-    for (int i = d; i > 0; i /= 2) {
+    while (d > 0) {
       char temp[strlen(binary_string) + 1];
       strcpy(temp, binary_string);
 
-      sprintf(binary_string, "%d", i % 2);
+      sprintf(binary_string, "%d", d % 2);
       strcat(binary_string, temp);
+
+      d /= 2;
     }
   }
 
